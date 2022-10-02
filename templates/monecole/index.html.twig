@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MonecoleController!{% endblock %}
+
+{% block body %}
+
+    
+    <section >
+        {% for article in articles %}
+            <article class="col-md-4 mx-auto text-center border border-dark mb-3 p-3 mt-3 mr-1">
+                <h2>{{ article.title }}</h2>
+                    <div class="matadate">{{article.createdAt|date('d/m/Y à H:i:s')}}</div>
+                    <div class="content">
+                        <img src="{{ article.image }}" alt="">
+                        {{ article.content|raw }}
+
+                        <a href="{{ path('monecole_show', {id: article.id}) }}" class="btn btn-primary">lire la suite</a>
+                    </div>
+            </article>
+    
+        {% endfor %}   
+    </section>
+
+<table class="table table-hover">
+	<thead>
+		<tr class="table-active table-light">
+            
+            <th>Title</th>
+            <th>Content</th>
+            <th>Image</th>
+           
+        </tr>
+	</thead>
+    <tbody>
+    {% for article in articles %}
+        <tr class="table-dark">
+            <td>{{ article.title}}</td>
+            <td>{{ article.content}}</td>
+            <td>{{ article.image}}</td>
+            
+            <td>
+            <a class="btn btn- mt-2 btn-success" href="{{ path('monecole_edit', {id: article.id}) }}">Ajouter</a>
+            </td>
+            <td>
+                 <a onclick="return confirm('voulez-vous supprimer cet article?')" class="btn btn-warning mt-2" href="{{ path('monecole_delete', {id: article.id}) }}">Supprimer</a>
+            </td>
+        
+        </tr>
+        
+    {% endfor %}
+    </tbody>
+</table>   
+ 
+
+{% endblock %}

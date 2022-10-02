@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<h1>
+{% if editMode  %}
+    Modification de l'article
+{% else %}
+    Nouvelle article
+{% endif %} 
+    </h1>
+{{ form_start(formArticle, {
+    attr: {
+        novalidate: 'novalidat'
+    }
+}) }}
+
+{{ form_row(formArticle.title, {
+    lable: "Titre", 
+    attr: {
+        placeholder:"Titre de l'article"
+    }
+}) }}
+{{ form_row(formArticle.content, {    
+    lable: "contenu", 
+    attr: {
+        placeholder:"Contenu de l'article"
+    }
+}) }}
+{{ form_row(formArticle.image, {    
+    lable: "Image", 
+    attr: {
+        placeholder:"Image de l'article"
+    }
+}) }}
+
+
+<button type="submit" class="btn btn-primary">
+{% if editMode  %}
+    Enregistrer les modification
+{% else %}
+   Envoyer
+{% endif %} 
+
+</button>
+
+{{ form_end(formArticle)}}
+
+
+
+{% endblock %}
